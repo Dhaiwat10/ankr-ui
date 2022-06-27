@@ -1,11 +1,13 @@
 import React from 'react';
 import { Meta, Story } from '@storybook/react';
-import { Button } from './Button';
+import { Button, IButtonProps } from './Button';
 
 const meta: Meta = {
   title: 'Button',
   component: Button,
-  argTypes: {},
+  argTypes: {
+    children: { control: 'text' },
+  },
   parameters: {
     controls: { expanded: true },
   },
@@ -13,10 +15,13 @@ const meta: Meta = {
 
 export default meta;
 
-const Template: Story = args => <Button {...args} />;
+const Template: Story<IButtonProps> = args => <Button {...args} />;
 
 // By passing using the Args format for exported stories, you can control the props for a component for reuse in a test
 // https://storybook.js.org/docs/react/workflows/unit-testing
 export const Default = Template.bind({});
 
-Default.args = {};
+Default.args = {
+  children: 'Button',
+  onClick: () => alert('Clicked'),
+};

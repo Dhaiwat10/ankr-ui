@@ -1,6 +1,22 @@
-import React from 'react';
-import type { FC } from 'react';
+import React, { FC } from 'react';
+import classNames from 'classnames';
 
-export const Button: FC = () => {
-  return <button className='p-2 rounded border'>Hello there</button>;
+export interface IButtonProps {
+  onClick?: () => void;
+  children: React.ReactNode;
+  className?: string;
+}
+
+export const Button: FC<IButtonProps> = ({ children, onClick, className }) => {
+  return (
+    <button
+      onClick={onClick}
+      className={classNames(
+        'px-4 py-2 rounded text-white bg-ankr-blue',
+        className
+      )}
+    >
+      {children}
+    </button>
+  );
 };
