@@ -1,11 +1,15 @@
 import classNames from 'classnames';
 import React, { FC } from 'react';
 
-export interface ITextProps {
+export interface ITextProps extends React.HTMLAttributes<HTMLParagraphElement> {
   children: React.ReactNode;
   className?: string;
 }
 
-export const Text: FC<ITextProps> = ({ children, className }) => {
-  return <p className={classNames('', className)}>{children}</p>;
+export const Text: FC<ITextProps> = ({ children, className, ...props }) => {
+  return (
+    <p className={classNames('', className)} {...props}>
+      {children}
+    </p>
+  );
 };
